@@ -7,7 +7,7 @@ import (
 )
 
 type TestRepository interface {
-	GetTest(ctx context.Context, message string) (*entity.Test, error)
+	GetTest(ctx context.Context) (*entity.Test, error)
 }
 
 type testRepository struct {
@@ -20,6 +20,6 @@ func NewTestRepository(cfg config.Config) TestRepository {
 	}
 }
 
-func (tr *testRepository) GetTest(ctx context.Context, message string) (*entity.Test, error) {
+func (tr *testRepository) GetTest(ctx context.Context) (*entity.Test, error) {
 	return &entity.Test{Message: "hi"}, nil
 }

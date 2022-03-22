@@ -8,7 +8,7 @@ import (
 )
 
 type TestUseCase interface {
-	GetTest(ctx context.Context, message string) (*entity.Test, error)
+	GetTest(ctx context.Context) (*entity.Test, error)
 }
 
 type testUseCase struct {
@@ -23,8 +23,11 @@ func NewTestUsecase(cfg config.Config, testRepo repository.TestRepository) TestU
 	}
 }
 
-func (tc *testUseCase) GetTest(ctx context.Context, message string) (*entity.Test, error) {
-	return &entity.Test{
-		Message: message,
-	}, nil
+func (tc *testUseCase) GetTest(ctx context.Context) (*entity.Test, error) {
+	msg, err := tc.testRepo.GetTest(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	return msg, nil
 }

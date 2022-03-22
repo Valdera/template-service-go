@@ -20,7 +20,13 @@ func NewTestHandler(testUc module.TestUseCase) *testHandler {
 }
 
 func (s *testHandler) GetTest(ctx context.Context, req *empty.Empty) (*pb.TestResponse, error) {
+
+	msg, err := s.testUc.GetTest(ctx)
+	if err != nil {
+		return nil, err
+	}
+
 	return &pb.TestResponse{
-		Message: "hi",
+		Message: msg.Message,
 	}, nil
 }

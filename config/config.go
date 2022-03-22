@@ -9,6 +9,7 @@ import (
 type Config struct {
 	GRPCPort string `envconfig:"GRPC_PORT" default:"9090"`
 	RESTPort string `envconfig:"REST_PORT" default:"8080"`
+	HOST     string `envconfig:"HOST" default:""`
 }
 
 // Get to get defined configuration
