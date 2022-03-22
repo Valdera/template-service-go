@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+
+package test;
+
+option go_package="./test";
+
+
+service Test {
+    rpc getTest(google.protobuf.Empty) returns (TestResponse) {
+        option (google.api.http) = {
+            get: "/v1/test"
+        };
+    }
+}
+
+
+message TestResponse {
+    string message = 1;
+}
